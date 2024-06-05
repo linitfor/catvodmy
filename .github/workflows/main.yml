@@ -1,0 +1,38 @@
+name: Build NodeJS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18.17.1
+        
+    - name: Run npm bild
+      working-directory: nodejs
+      run: |
+        npm i
+        npm run build
+        
+    - name: Archive dist
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist
+        path: |
+          nodejs/dist
+          echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M:%S CST')" > Update_time.log
+
+    - name: git add
+      run: |
+          git add -A
+          ls -la 
+          
+    - name: commit & push
+      run: |
+          git commit -m "Link updated"
+          git push
