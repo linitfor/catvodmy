@@ -12,6 +12,13 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18.17.1
+
+
+    - name: config
+      run: |
+          git pull
+          git config --global user.email "cat@gmail.com"
+          git config --global user.name "cat"
         
     - name: Run npm bild
       working-directory: nodejs
