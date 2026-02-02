@@ -1,8 +1,8 @@
 import { _ } from './lib/cat.js';
 import * as HLS from './lib/hls.js';
 
-let key = 'ryzem3u8';
-let url = '';
+let key = 'rym3u8';
+let url = 'https://cj.rycjapi.com/api.php/provide/vod/from/rym3u8/at/xml/';
 let categories = [];
 let siteKey = '';
 let siteType = 0;
