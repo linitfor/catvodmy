@@ -1,5 +1,6 @@
 import * as HLS from 'hls-parser';
 import req from '../../util/req.js';
+import { cn2tw } from '../../util/cc.js';
 
 let url = '';
 let categories = [];
@@ -27,7 +28,7 @@ async function home(_inReq, _outResp) {
         }
         classes.push({
             type_id: cls.type_id.toString(),
-            type_name: n,
+            type_name: cn2tw(n),
         });
     }
     if (categories && categories.length > 0) {
@@ -50,9 +51,9 @@ async function category(inReq, _outResp) {
     for (const vod of data.list) {
         videos.push({
             vod_id: vod.vod_id.toString(),
-            vod_name: vod.vod_name.toString(),
+            vod_name: cn2tw(vod.vod_name.toString()),
             vod_pic: vod.vod_pic,
-            vod_remarks: vod.vod_remarks,
+            vod_remarks: cn2tw(vod.vod_remarks),
         });
     }
     return {
@@ -70,15 +71,15 @@ async function detail(inReq, _outResp) {
         const data = (await request(url + `?ac=detail&ids=${id}`)).list[0];
         let vod = {
             vod_id: data.vod_id,
-            vod_name: data.vod_name,
+            vod_name: cn2tw(data.vod_name),
             vod_pic: data.vod_pic,
-            type_name: data.type_name,
+            type_name: cn2tw(data.type_name),
             vod_year: data.vod_year,
-            vod_area: data.vod_area,
-            vod_remarks: data.vod_remarks,
-            vod_actor: data.vod_actor,
-            vod_director: data.vod_director,
-            vod_content: data.vod_content.trim(),
+            vod_area: cn2tw(data.vod_area),
+            vod_remarks: cn2tw(data.vod_remarks),
+            vod_actor: cn2tw(data.vod_actor),
+            vod_director: cn2tw(data.vod_director),
+            vod_content: cn2tw(data.vod_content.trim()),
             vod_play_from: data.vod_play_from,
             vod_play_url: data.vod_play_url,
         };
@@ -181,9 +182,9 @@ async function search(inReq, _outResp) {
     for (const vod of data.list) {
         videos.push({
             vod_id: vod.vod_id.toString(),
-            vod_name: vod.vod_name.toString(),
+            vod_name: cn2tw(vod.vod_name.toString()),
             vod_pic: vod.vod_pic,
-            vod_remarks: vod.vod_remarks,
+            vod_remarks: cn2tw(vod.vod_remarks),
         });
     }
     return {
@@ -264,7 +265,7 @@ async function test(inReq, outResp) {
 export default {
     meta: {
         key: 'rym3u8',
-        name: '如意采集',
+        name: '如意',
         type: 3,
     },
     api: async (fastify) => {
