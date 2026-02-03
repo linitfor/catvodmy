@@ -6,9 +6,10 @@ import push from './spider/video/push.js';
 import alist from './spider/pan/alist.js';
 import _13bqg from './spider/book/13bqg.js';
 import copymanga from './spider/book/copymanga.js';
+import youtube from './spider/video/youtube.js';
 
 
-const spiders = [rym3u8, ffm3u8, push, alist, _13bqg, copymanga];
+const spiders = [rym3u8, ffm3u8, youtube, push, alist, _13bqg, copymanga];
 const spiderPrefix = '/spider';
 
 /**
@@ -93,5 +94,6 @@ export default async function router(fastify) {
         }
     );
 }
+
 
 
